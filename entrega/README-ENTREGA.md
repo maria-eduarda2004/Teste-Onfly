@@ -71,7 +71,15 @@ Reservas: 300 | Confirmadas: 187 | Noites: 907 | Total BRL: 344792.41
 
 ---
 
-## 4. Resultado do `pytest`
+## 4. Resultado do `pytest` e testes adicionais (`tests/test_extra.py`)
+
+Além dos **5 testes originais** (mantidos inalterados), foram adicionados **6 novos testes** em `tests/test_extra.py` para cobrir limites e regras de negócio que não eram testados inicialmente:
+* **`test_reads_more_than_200_reservations`:** valida a leitura de 250 reservas sem truncar na linha 200.
+* **`test_top_hotels_tie_breaker_by_hotel_id_ascending`:** valida o desempate de `top_hotels` por `hotel_id` ascendente em valores iguais.
+* **`test_nights_across_year_boundary_and_by_month_order`:** valida estadias na virada de ano, múltiplos quartos e ordenação de `by_month`.
+* **`test_zero_confirmed_reservations_avoids_division_by_zero`:** garante `"average_nightly_rate_brl": "0.00"` quando não há reservas confirmadas.
+* **`test_cli_exit_code_2_on_missing_input_file` e `test_cli_exit_code_2_on_invalid_top_argument`:** validam o código de saída `2` do CLI para entradas ou argumentos inválidos.
+
 
 ```text
 ============================= test session starts =============================
